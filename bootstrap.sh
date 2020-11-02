@@ -83,7 +83,7 @@ elif [ "2" = $version ]; then
 	curl -L -O https://apt.procurs.us/dists/iphoneos-arm64/1500/bootstrap-ssh.tar.zst -O https://raw.githubusercontent.com/Subcursus/Subcursus.github.io/master/pool/main/iphoneos-arm64/substrate/cameronkatri-keyring_2020.09.05_iphoneos-arm.deb
 fi
 
-zstd -d bootstrap-ssh.tar.zst
+tar -I zstd -d bootstrap-ssh.tar.zst
 scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap-ssh.tar packagemanager.deb device.sh cameronkatri-keyring_2020.09.05_iphoneos-arm.deb root@127.0.0.1:/var/root/
 ssh -p4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" root@127.0.0.1 "bash /var/root/device.sh"
 
